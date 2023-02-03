@@ -98,6 +98,16 @@ public class TestAdminKontoController {
         assertEquals("Ikke innlogget", resultat);
     }
 
+    @Test
+    public void test_IkkeEndreKonto(){
+        Konto konto = new Konto("01234567897" , "12345678910", 720, "Lønnskonto", "NOK",null);
+        when(sjekk.loggetInn()).thenReturn(null);
+        String resultat = adminController.endreKonto(konto);
+        assertEquals("Ikke innlogget", resultat);
+    }
+
+
+
 
 
 }
