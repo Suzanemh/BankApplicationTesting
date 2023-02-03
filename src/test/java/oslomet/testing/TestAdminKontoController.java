@@ -75,7 +75,15 @@ public class TestAdminKontoController {
         when(repository.endreKonto(any(Konto.class))).thenReturn("OK");
         String resultat = adminController.endreKonto(konto);
         assertEquals("OK", resultat);
+    }
 
+    @Test
+    public void slettKonto(){
+        Konto konto = new Konto("01234567897" , "12345678910", 720, "Lønnskonto", "NOK",null);
+        when(sjekk.loggetInn()).thenReturn("01234567897");
+        when(repository.slettKonto(konto.getKontonummer())).thenReturn("OK");
+        String resultat = adminController.slettKonto(konto.getKontonummer());
+        assertEquals("OK", resultat);
 
     }
 }
