@@ -6,6 +6,7 @@ import oslomet.testing.DAL.AdminRepository;
 import oslomet.testing.Models.Konto;
 import oslomet.testing.Sikkerhet.Sikkerhet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -54,3 +55,5 @@ public class AdminKontoController {
         return "Ikke innlogget";
     }
 }
+
+

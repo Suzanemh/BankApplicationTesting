@@ -93,10 +93,12 @@ public class TestAdminKontoController {
 
     @Test
     public void test_IkkeHentAlle(){
-        Konto konto = new Konto("01234567897" , "12345678910", 720, "Lønnskonto", "NOK",null);
+        Konto enkonto = new Konto("01234567897" , "12345678910", 720, "Lønnskonto", "NOK",null);
+        List<Konto> list = new ArrayList<>();
+        list.add(enkonto);
         when(sjekk.loggetInn()).thenReturn(null);
         List<Konto> resultat = adminController.hentAlleKonti();
-        assertEquals("Ikke innlogget", resultat);
+        assertEquals(null, resultat);
 
     }
 
@@ -119,5 +121,10 @@ public class TestAdminKontoController {
     }
 
     @Test
-    public void
+   public void test_IkkeSlettKonto(){
+        Konto konto = new Konto("01234567897", "12345678910", 720, "Lønnskonto", "NOK", null);
+        when(sjekk.loggetInn()).thenReturn(null);
+        String resultat = adminController.slettKonto(konto.getKontonummer());
+        assertEquals("Ikke innlogget", resultat);
+    }
 }
