@@ -94,5 +94,12 @@ public void test_IkkeLoggetInn(){
 
 }
 //test_AdminLoggetInn
+@Test
+public void test_AdminLoggetInn(){
+        session.setAttribute("Innlogget", "Admin");
 
+        String resultat = sikkerhetsController.loggetInn();
+
+        assertEquals("Admin",resultat );
+}
 }
