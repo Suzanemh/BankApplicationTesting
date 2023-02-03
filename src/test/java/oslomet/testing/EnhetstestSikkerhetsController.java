@@ -79,8 +79,20 @@ public class EnhetstestSikkerhetsController {
         // assert
         assertEquals("OK", resultat);
     }
-}
+
 
 //test_IkkeLoggetInn
+@Test
+public void test_IkkeLoggetInn(){
+
+    session.setAttribute("Innlogget", null);
+
+    String resultat = sikkerhetsController.loggetInn();
+
+    assertEquals(null, resultat);
+
+
+}
 //test_AdminLoggetInn
 
+}
