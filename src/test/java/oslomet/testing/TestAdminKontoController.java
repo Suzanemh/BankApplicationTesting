@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -50,6 +51,22 @@ public class TestAdminKontoController {
         List<Konto> resultat = adminController.hentAlleKonti();
 
         assertEquals(list, resultat);
+
+    }
+
+    @Test
+    public void registrerKonto(){
+        Konto konto = new Konto("01234567897" , "12345678910", 720, "Lønnskonto", "NOK",null);
+
+        when(sjekk.loggetInn()).thenReturn("01234567897");
+
+        when(repository.registrerKonto(any(Konto.class))).thenReturn("OK");
+
+        String resultat = adminController.registrerKonto(konto);
+
+        assertEquals("OK", resultat);
+
+
 
     }
 }
