@@ -188,6 +188,19 @@ public class EnhetstestBankController {
         assertEquals("OK", resultat);
 
     }
+    @Test
+    public void registrerBetaling_IkkeLoggetInn() {
+        // arrange
+        Transaksjon transak = new Transaksjon(12345, "012345678910",1500.0,"2023-02-29","Her har du de svarte penga dine", "2023-03-01","109876543210");
 
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        // act
+        String resultat = bankController.registrerBetaling(transak);
+
+        // assert
+
+        assertNull(resultat);
+    }
 }
 
