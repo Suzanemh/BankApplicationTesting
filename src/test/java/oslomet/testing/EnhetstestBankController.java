@@ -9,6 +9,7 @@ import oslomet.testing.API.BankController;
 import oslomet.testing.DAL.BankRepository;
 import oslomet.testing.Models.Konto;
 import oslomet.testing.Models.Kunde;
+import oslomet.testing.Models.Transaksjon;
 import oslomet.testing.Sikkerhet.Sikkerhet;
 
 import java.util.ArrayList;
@@ -168,6 +169,24 @@ public class EnhetstestBankController {
         // assert
 
         assertNull(resultat);
+    }
+
+    @Test
+    public void registrerBetaling_LoggetInn() {
+        // arrange
+        Transaksjon transak = new Transaksjon(12345, "012345678910",1500.0,"2023-02-29","Her har du de svarte penga dine", "2023-03-01","109876543210");
+
+        when(sjekk.loggetInn()).thenReturn("012345678910");
+
+        when(repository.registrerBetaling(transak)).thenReturn("OK");
+
+        // act
+        String resultat = bankController.registrerBetaling(transak);
+
+        // assert
+
+        assertEquals("OK", resultat);
+
     }
 
 }
