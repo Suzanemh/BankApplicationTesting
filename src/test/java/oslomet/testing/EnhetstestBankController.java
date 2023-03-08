@@ -17,6 +17,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -234,6 +235,30 @@ public class EnhetstestBankController {
 
         // assert
         assertNull(resultat);
+    }
+
+    @Test
+    public void utforBetaling_LoggetInnOK() {
+        // arrange
+        int txID = 22;
+        Transaksjon transak1 = new Transaksjon(12345, "012345678910",1500.0,"2023-02-29","Her har du de svarte penga dine", "2023-03-01","109876543210");
+        Transaksjon transak2 = new Transaksjon(12345, "012345678910",1800.0,"2023-01-15","Kokainpenger", "2023-02-01","109876543210");
+
+        List<Transaksjon> Tlist = new ArrayList<>();
+        Tlist.add(transak1);
+        Tlist.add(transak2);
+
+        when(sjekk.loggetInn()).thenReturn("012345678910");
+
+        when(repository.utforBetaling(anyInt())).thenReturn("OK");
+
+        when(repository.hentBetalinger(anyString())).thenReturn(Tlist);
+
+        // act
+        List<Transaksjon> resultat = bankController.utforBetaling(txID);
+
+        // assert
+        assertEquals(Tlist, resultat);
     }
 }
 
