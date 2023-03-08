@@ -223,5 +223,17 @@ public class EnhetstestBankController {
         // assert
         assertEquals(Tlist, resultat);
     }
+
+    @Test
+    public void hentBetalinger_IkkeLoggetInn() {
+        // arrange
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        // act
+        List<Transaksjon> resultat = bankController.hentBetalinger();
+
+        // assert
+        assertNull(resultat);
+    }
 }
 
