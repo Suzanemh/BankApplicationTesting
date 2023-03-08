@@ -1,5 +1,1 @@
-# NettbankTest
-Obligatorisk oppgave i systemtesting 
-
-Følgende tester har blitt utført på nettbank applikasjonen:
-Enhetstest (Java kode)
+Solution proposal for compulsory tasks in the subject Testing of software, at OsloMet.
