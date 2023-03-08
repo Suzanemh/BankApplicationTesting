@@ -283,5 +283,19 @@ public class EnhetstestBankController {
         // assert
         assertNull(resultat);
     }
+
+    @Test
+    public void utforBetaling_IkkeLoggetInn() {
+        // arrange
+        int txID = 21;
+
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        // act
+        List<Transaksjon> resultat = bankController.utforBetaling(txID);
+
+        // assert
+        assertNull(resultat);
+    }
 }
 
