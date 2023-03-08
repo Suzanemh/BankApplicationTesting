@@ -156,5 +156,19 @@ public class EnhetstestBankController {
         assertEquals(konti, resultat);
     }
 
+    @Test
+    public void hentSaldi_IkkeLoggetInn() {
+        // arrange
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        // act
+
+        List<Konto> resultat = bankController.hentSaldi();
+
+        // assert
+
+        assertNull(resultat);
+    }
+
 }
 
