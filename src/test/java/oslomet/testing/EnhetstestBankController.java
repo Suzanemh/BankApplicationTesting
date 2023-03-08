@@ -117,6 +117,20 @@ public class EnhetstestBankController {
         // assert
         assertEquals(konto, resultat);
     }
+    @Test
+    public void hentTransaksjoner_IkkeLoggetInn() {
+        // arrange
+
+        when(sjekk.loggetInn()).thenReturn(null);
+
+        // act
+
+        Konto resultat = bankController.hentTransaksjoner("01010110523", "", "");
+
+        // assert
+
+        assertNull(resultat);
+    }
 
 }
 
