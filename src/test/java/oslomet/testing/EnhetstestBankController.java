@@ -100,5 +100,23 @@ public class EnhetstestBankController {
         // assert
         assertNull(resultat);
     }
+
+    @Test
+    public void hentTransaksjoner_LoggetInn() {
+        // arrange
+        Konto konto = new Konto("105010123456", "01010110523",
+                720, "Lønnskonto", "NOK", null);
+
+        when(sjekk.loggetInn()).thenReturn("01010110523");
+
+        when(repository.hentTransaksjoner(anyString(), anyString(), anyString())).thenReturn(konto);
+
+        // act
+        Konto resultat = bankController.hentTransaksjoner("01010110523", "", "");
+
+        // assert
+        assertEquals(konto, resultat);
+    }
+
 }
 
